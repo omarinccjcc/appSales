@@ -2,6 +2,15 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
     .config(
         ['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
 
+            $routeProvider.when('/create', {
+                templateUrl: 'partials/createcliente.html',
+                controller: CreateController
+            });
+
+            $routeProvider.when('/edit/:id', {
+                templateUrl: 'partials/editcliente.html',
+                controller: EditController
+            });
 
             $routeProvider.when('/login', {
                 templateUrl: 'partials/login.html',
@@ -99,11 +108,41 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 
     $rootScope.initialized = true;
 });
+/*listar clientes*/
+function IndexController($scope, ClienteService) {
 
-function IndexController($scope, BlogPostService) {
+    $scope.clientes = ClienteService.query();
 
-
+    $scope.deletePost = function (cliente) {
+        cliente.$remove(function () {
+            $scope.clientes = ClienteService.query();
+        });
+    };
 }
+
+function EditController($scope, $routeParams, $location, ClienteService) {
+
+    $scope.cliente = ClienteService.get({id: $routeParams.id});
+
+    $scope.save = function () {
+        $scope.cliente.$save(function () {
+            $location.path('/');
+        });
+    };
+}
+
+/*create*/
+function CreateController($scope, $location, ClienteService) {
+
+    $scope.cliente = new ClienteService();
+
+    $scope.save = function () {
+        $scope.cliente.$save(function () {
+            $location.path('/');
+        });
+    };
+}
+
 
 
 function LoginController($scope, $rootScope, $location, $cookieStore, UserService) {
@@ -143,7 +182,7 @@ services.factory('UserService', function ($resource) {
     );
 });
 
-services.factory('BlogPostService', function ($resource) {
+services.factory('ClienteService', function ($resource) {
 
-    return $resource('rest/blogposts/:id', {id: '@id'});
+    return $resource('rest/cliente/:id', {id: '@id'});
 });
