@@ -26,6 +26,9 @@
     <context:component-scan base-package="pe.edu.upeu.appsales.dao"/>
     <context:component-scan base-package="pe.edu.upeu.appsales.service"/>
 
+    <bean id="clienteDao" class="pe.edu.upeu.appsales.dao.cliente.ClienteDaoImpl"></bean>
+
+
     <!--
         DATABASE SETUP
      -->
