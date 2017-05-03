@@ -1,0 +1,68 @@
+<div class="alert alert-success">
+    <h3>Crear Cliente</h3>
+</div>
+
+<form class="row">
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label class="control-label" for="numeroRuc">RUC</label>
+            <input ng-model="cliente.numeroRuc" id="numeroRuc" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label class="control-label" for="RazonSocial">Razon Social</label>
+            <input ng-model="cliente.razonSocial" id="razonSocial" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label class="control-label" for="nombreComercial">Nombre Comercial</label>
+            <input ng-model="cliente.nombreComercial" id="nombreComercial" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label class="control-label" for="telefono">Telefono</label>
+            <input ng-model="cliente.telefono" id="telefono" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label class="control-label" for="email">Email</label>
+            <input ng-model="cliente.email" id="email" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label class="control-label" for="direccion">Direccion</label>
+            <input ng-model="cliente.direccion" id="direccion" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label class="control-label" for="fax">Fax</label>
+            <input ng-model="cliente.fax" id="fax" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label class="control-label" for="tpoContribuyente">Tpo. Contribuyente</label>
+            <input ng-model="cliente.tpoContribuyente" id="tpoContribuyente" class="form-control"/>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <label class="control-label" for="estado">Estado</label>
+            <input ng-model="cliente.estado" id="estado" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary" ng-click="save()"><span class="fa fa-check"></span> Guardar</button>
+        </div>
+    </div>
+</form>
