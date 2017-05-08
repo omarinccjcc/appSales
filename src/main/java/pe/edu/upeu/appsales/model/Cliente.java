@@ -101,15 +101,22 @@ public class Cliente implements BaseEntity {
 
     @Override
     public String toString() {
-        return String.format("cliente[%d, %s]", this.id, this.getNumeroDniRuc(), this.getRazonSocialNombre(), this.getTelefono(), this.getEmail(), this.getDireccion(), this.getEstado());
+        return "Cliente{" +
+                "id=" + id +
+                ", numeroDniRuc='" + numeroDniRuc + '\'' +
+                ", razonSocialNombre='" + razonSocialNombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", estado='" + estado + '\'' +
+                '}';
     }
-
 
     public static class ClienteBuilder {
 
-        private final String numeroRucDni;
+        private String numeroRucDni;
 
-        private final String razonSocialNombre;
+        private String razonSocialNombre;
 
         private String estado;
 
@@ -119,9 +126,17 @@ public class Cliente implements BaseEntity {
 
         private String email;
 
-        public ClienteBuilder(String numeroRucDni, String razonSocialNombre) {
+        public ClienteBuilder() {
+        }
+
+        public ClienteBuilder numeroRucDni(String numeroRucDni) {
             this.numeroRucDni = numeroRucDni;
+            return this;
+        }
+
+        public ClienteBuilder razonSocialNombre(String razonSocialNombre) {
             this.razonSocialNombre = razonSocialNombre;
+            return this;
         }
 
         public ClienteBuilder estado(String estado) {
