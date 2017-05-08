@@ -13,9 +13,9 @@ import pe.edu.upeu.appsales.dao.JpaDao;
 import pe.edu.upeu.appsales.model.Product;
 
 
-public class ProductDaoImp  extends JpaDao<Product, Long> implements ProductDao{
+public class ProductDaoImpl  extends JpaDao<Product, Long> implements ProductDao{
 
-    public  ProductDaoImp(){
+    public  ProductDaoImpl(){
         super(Product.class);
     }
 

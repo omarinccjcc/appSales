@@ -3,10 +3,16 @@ package pe.edu.upeu.appsales.rest.resources;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
@@ -27,44 +33,86 @@ import pe.edu.upeu.appsales.model.Role;
 @Path("/product")
 public class ProductResource {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private ProductDao productDao;
+	@Autowired
+	private ProductDao productDao;
 
-    @Autowired
-    private ObjectMapper mapper;
+	@Autowired
+	private ObjectMapper mapper;
 
-    
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public String list() throws IOException
-    {
-        this.logger.info("list()");
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public String list() throws IOException {
+		this.logger.info("list product()");
 
-        ObjectWriter viewWriter;
-        if (this.isAdmin()) {
-            viewWriter = this.mapper.writerWithView(JsonViews.Admin.class);
-        } else {
-            viewWriter = this.mapper.writerWithView(JsonViews.User.class);
-        }
-        List<Product> allEntries = this.productDao.findAll();
+		ObjectWriter viewWriter;
+		if (this.isAdmin()) {
+			viewWriter = this.mapper.writerWithView(JsonViews.User.class);
+		} else {
+			viewWriter = this.mapper.writerWithView(JsonViews.User.class);
+		}
+		List<Product> allEntries = this.productDao.findAll();
 
-        return viewWriter.writeValueAsString(allEntries);
-    }
-    
-    private boolean isAdmin()
-    {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = authentication.getPrincipal();
+		for (Product product : allEntries) {
+			System.out.println("Id "+product.getId());
+		}
+		
+		return viewWriter.writeValueAsString(allEntries);
+	}
 
-        if (!(principal instanceof UserDetails)) {
-            return false;
-        }
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{id}")
+	public Product read(@PathParam("id") Long id) {
+		this.logger.info("product::. read(id)");
 
-        UserDetails userDetails = (UserDetails) principal;
+		Product product = this.productDao.find(id);
+		if (product == null) {
+			throw new WebApplicationException(Response.Status.NOT_FOUND);
+		}
 
-        return userDetails.getAuthorities().contains(Role.ADMIN);
-    }
-    
+		return product;
+	}
+
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Product create(Product product) {
+		this.logger.info("create(): " + product);
+		return this.productDao.save(product);
+	}
+
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("{id}")
+	public Product update(@PathParam("id") Long id, Product product) {
+		this.logger.info("product::: update(): " + product);
+
+		return this.productDao.save(product);
+	}
+
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{id}")
+	public void delete(@PathParam("id") Long id) {
+		this.logger.info("delete(id)");
+
+		this.productDao.delete(id);
+	}
+
+	private boolean isAdmin() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Object principal = authentication.getPrincipal();
+
+		if (!(principal instanceof UserDetails)) {
+			return false;
+		}
+
+		UserDetails userDetails = (UserDetails) principal;
+
+		return userDetails.getAuthorities().contains(Role.ADMIN);
+	}
+
 }

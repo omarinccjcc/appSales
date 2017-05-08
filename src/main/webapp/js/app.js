@@ -2,6 +2,22 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
     .config(
         ['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
 
+            $routeProvider.when('/product', {
+                templateUrl: 'partials/products.html',
+                controller: ProductListController
+            });
+
+            $routeProvider.when('/productCreate', {
+                templateUrl: 'partials/productCreate.html',
+                controller: ProductCreateController
+            });
+
+            $routeProvider.when('/productEdit/:id', {
+                templateUrl: 'partials/productEdit.html',
+                controller: ProductEditController
+            });
+
+            
             $routeProvider.when('/create', {
                 templateUrl: 'partials/createcliente.html',
                 controller: CreateController
@@ -108,6 +124,42 @@ angular.module('exampleApp', ['ngRoute', 'ngCookies', 'exampleApp.services'])
 
     $rootScope.initialized = true;
 });
+
+/*CRUD product*/
+function ProductListController($scope, ProductService) {
+
+    $scope.products = ProductService.query();
+
+    $scope.deletePost = function (product) {
+    	product.$remove(function () {
+            $scope.products = ProductService.query();
+        });
+    };
+}
+
+function ProductEditController($scope, $routeParams, $location, ProductService) {
+
+    $scope.product = ProductService.get({id: $routeParams.id});
+
+    $scope.save = function () {
+        $scope.product.$save(function () {
+            $location.path('/product');
+        });
+    };
+}
+
+function ProductCreateController($scope, $location, ProductService) {
+
+    $scope.product = new ProductService();
+
+    $scope.save = function () {
+        $scope.product.$save(function () {
+            $location.path('/product');
+        });
+    };
+}
+
+
 /*listar clientes*/
 function IndexController($scope, ClienteService) {
 
@@ -185,4 +237,9 @@ services.factory('UserService', function ($resource) {
 services.factory('ClienteService', function ($resource) {
 
     return $resource('rest/cliente/:id', {id: '@id'});
+});
+
+services.factory('ProductService', function ($resource) {
+
+    return $resource('rest/product/:id', {id: '@id'});
 });
