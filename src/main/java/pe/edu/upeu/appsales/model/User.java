@@ -12,9 +12,9 @@ import java.util.Set;
  * @author Fredy Tuco Calizaya
  */
 @Entity
-public class User implements EntityGeneric, UserDetails {
+public class User implements BaseEntity, UserDetails {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, length = 16, nullable = false)

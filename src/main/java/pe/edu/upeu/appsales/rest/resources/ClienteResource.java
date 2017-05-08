@@ -29,7 +29,6 @@ import java.util.List;
 public class ClienteResource
 {
 
-
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -77,7 +76,6 @@ public class ClienteResource
     public Cliente create(Cliente cliente)
     {
         this.logger.info("create(): " + cliente);
-
         return this.clienteDao.save(cliente);
     }
 

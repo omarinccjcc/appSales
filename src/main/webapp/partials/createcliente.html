@@ -4,71 +4,44 @@
 
 <form class="row">
     <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-        <label class="control-label" for="numeroRuc">RUC</label>
-            <input ng-model="cliente.numeroRuc" id="numeroRuc" class="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <label class="control-label" for="numeroDNI">DNI</label>
-            <input ng-model="cliente.numeroDNI" id="numeroDNI" class="form-control"/>
+        <div class="col-xs-12">
+        <label class="control-label" for="numeroDniRuc">DNI/RUC</label>
+            <input ng-model="cliente.numeroDniRuc" id="numeroDniRuc" class="form-control"/>
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <label class="control-label" for="nazonSocial">Razon Social</label>
-            <input ng-model="cliente.razonSocial" id="nazonSocial" class="form-control"/>
+        <div class="col-xs-12">
+            <label class="control-label" for="razonSocialNombre">Nombre / Razon Social</label>
+            <input ng-model="cliente.razonSocialNombre" id="razonSocialNombre" class="form-control"/>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <label class="control-label" for="nombreComercial">Nombre Comercial</label>
-            <input ng-model="cliente.nombreComercial" id="nombreComercial" class="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="col-xs-12">
             <label class="control-label" for="Telefono">Telefono</label>
             <input ng-model="cliente.telefono" id="telefono" class="form-control"/>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="col-xs-12">
             <label class="control-label" for="Email">Email</label>
             <input ng-model="cliente.email" id="email" class="form-control"/>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="col-xs-12">
             <label class="control-label" for="Direccion">Direccion</label>
             <input ng-model="cliente.direccion" id="direccion" class="form-control"/>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <label class="control-label" for="Fax">Fax</label>
-            <input ng-model="cliente.fax" id="fax" class="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <label class="control-label" for="TpoContribuyente">Tpo. Contribuyente</label>
-            <input ng-model="cliente.tpoContribuyente" id="tpoContribuyente" class="form-control"/>
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="col-xs-12">
             <label class="control-label" for="Estado">Estado</label>
             <input ng-model="cliente.estado" id="estado" class="form-control"/>
         </div>
     </div>
-
     <div class="form-group">
-        <div class="col-sm-10 col-sm-offset-2">
+        <div class="col-sm-12">
             <button type="submit" class="btn btn-primary" ng-click="save()"><span class="fa fa-check"></span> Guardar</button>
         </div>
     </div>

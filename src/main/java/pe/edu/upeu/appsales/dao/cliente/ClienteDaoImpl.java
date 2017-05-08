@@ -28,7 +28,7 @@ public class ClienteDaoImpl extends JpaDao<Cliente, Long> implements ClienteDao 
         final CriteriaQuery<Cliente> criteriaQuery = builder.createQuery(Cliente.class);
 
         Root<Cliente> root = criteriaQuery.from(Cliente.class);
-        criteriaQuery.orderBy(builder.desc(root.get("razonSocial")));
+        criteriaQuery.orderBy(builder.desc(root.get("razonSocialNombre")));
 
         TypedQuery<Cliente> typedQuery = this.getEntityManager().createQuery(criteriaQuery);
         return typedQuery.getResultList();
