@@ -32,6 +32,12 @@ public class Cliente implements BaseEntity {
 
     public Cliente() {
     }
+    /*creado por ed*/
+
+    public Cliente(String numeroDniRuc, String razonSocialNombre) {
+        this.numeroDniRuc = numeroDniRuc;
+        this.razonSocialNombre = razonSocialNombre;
+    }
 
     public Cliente(String numeroDniRuc, String razonSocialNombre, String telefono, String email) {
         this.numeroDniRuc = numeroDniRuc;
