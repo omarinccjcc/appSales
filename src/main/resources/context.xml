@@ -27,7 +27,10 @@
     <context:component-scan base-package="pe.edu.upeu.appsales.service"/>
 
     <bean id="clienteDao" class="pe.edu.upeu.appsales.dao.cliente.ClienteDaoImpl"></bean>
+    <bean id="productDao" class="pe.edu.upeu.appsales.dao.product.ProductDaoImpl"></bean>
 
+    <bean id="jjFileWriter" class="pe.edu.upeu.appsales.beanfactory.JJFileWriter"></bean>
+    <bean id="jjDatabaseWriter" class="pe.edu.upeu.appsales.beanfactory.JJDatabaseWriter"></bean>
 
     <!--
         DATABASE SETUP

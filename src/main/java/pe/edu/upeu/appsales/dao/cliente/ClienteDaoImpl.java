@@ -1,17 +1,17 @@
 package pe.edu.upeu.appsales.dao.cliente;
 
-import org.springframework.util.ObjectUtils;
-import pe.edu.upeu.appsales.dao.Dao;
-import pe.edu.upeu.appsales.dao.JpaDao;
-import pe.edu.upeu.appsales.model.Cliente;
-import org.springframework.transaction.annotation.Transactional;
-import pe.edu.upeu.appsales.util.MatchModeSearch;
+import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
+
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
+
+import pe.edu.upeu.appsales.dao.JpaDao;
+import pe.edu.upeu.appsales.model.Cliente;
 
 
 /**
