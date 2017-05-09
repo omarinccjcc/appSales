@@ -2,7 +2,7 @@ package pe.edu.upeu.appsales.dao;
 
 
 import org.springframework.transaction.annotation.Transactional;
-import pe.edu.upeu.appsales.model.EntityGeneric;
+import pe.edu.upeu.appsales.model.BaseEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,11 +12,11 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 /**
- * @param <T> Type of the EntityGeneric.
+ * @param <T> Type of the BaseEntity.
  * @param <I> Type of the Primary Key.
  * @author Fredy Tuco Calizaya
  */
-public class JpaDao<T extends EntityGeneric, I> implements Dao<T, I> {
+public class JpaDao<T extends BaseEntity, I> implements Dao<T, I> {
     private EntityManager entityManager;
 
     protected Class<T> entityClass;

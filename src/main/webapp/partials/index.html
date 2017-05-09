@@ -1,38 +1,53 @@
 <div class="pull-right">
-    <a href="#!/create" class="btn btn-danger" ng-show="hasRole('ROLE_ADMIN')" title="Create"><span class="fa fa-plus"></span></a>
+    <a href="#!/create" class="btn btn-danger" ng-show="hasRole('ROLE_ADMIN')" title="Create"><span
+            class="fa fa-plus"></span></a>
 </div>
 <div class="alert alert-success">
     <h3>listar Clientes</h3>
 </div>
 
 <div class="table table-responsive">
+
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <th>RUC</th>
-            <th>Razón Social</th>
-            <th>Tpo. Contri</th>
-            <th>Estado</th>
-            <th>Eamil</th>
+            <th>DNI/RUC</th>
+            <th>Nombres/Razón Social</th>
+            <th>Email</th>
             <th>Direccion</th>
+            <th>Estado</th>
             <th>Edit.</th>
         </tr>
         </thead>
-        <tr ng-repeat="cliente in clientes">
-            <td> {{cliente.numeroRuc}}</td>
-            <td>{{cliente.razonSocial}}</td>
-            <td>{{cliente.tpoContribuyente}}</td>
-            <td>{{cliente.estado}}</td>
+        <tr>
+            <td><input ng-model="cliente.numeroDniRuc" id="numeroDniRuc" class="form-control input-sm"/></td>
+            <td><input ng-model="cliente.razonSocialNombre" id="razonSocialNombre" class="form-control input-sm"/></td>
+            <td><input ng-model="cliente.email" id="email" class="form-control input-sm"/></td>
+            <td><input ng-model="cliente.direccion" id="direccion" class="form-control input-sm"/></td>
+            <td>
+                <a href="" ng-click="deletePost(cliente)" class="btn btn-xs btn-default"
+                   ng-show="hasRole('ROLE_ADMIN')"
+                   title="delete"><span class="fa fa-trash-o"></span></a>
+            </td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="cliente in clientes ">
+            <td> {{cliente.numeroDniRuc}}</td>
+            <td>{{cliente.razonSocialNombre}}</td>
             <td>{{cliente.email}}</td>
             <td>{{cliente.direccion}}</td>
-            <td style="text-align: center;">  <a href="" ng-click="deletePost(cliente)" class="btn btn-xs btn-default" ng-show="hasRole('ROLE_ADMIN')"
-                     title="delete"><span class="fa fa-trash-o"></span></a>
+            <td>{{cliente.estado}}</td>
+            <td style="text-align: center;">
+                <a href="" ng-click="deletePost(cliente)" class="btn btn-xs btn-default"
+                   ng-show="hasRole('ROLE_ADMIN')"
+                   title="delete"><span class="fa fa-trash-o"></span></a>
                 <a href="#!/edit/{{cliente.id}}" class="btn btn-xs btn-default" ng-show="hasRole('ROLE_ADMIN')"
-                   title="edit"><span class="fa fa-pencil"></span></a></td>
+                   title="edit"><span class="fa fa-pencil"></span></a>
+            </td>
         </tr>
 
     </table>
 
 </div>
 
-<hr />
+<hr/>

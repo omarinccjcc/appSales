@@ -1,50 +1,52 @@
 package pe.edu.upeu.appsales.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Eduardo on 25/04/2017.
  */
 @Entity
-public class Cliente implements EntityGeneric {
+public class Cliente implements BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, length = 11, nullable = false)
-    private String numeroRuc;
+    private String numeroDniRuc;
 
-    @Column(unique = true, length = 8, nullable = false)
-    private String numeroDNI;
+    @Column(length = 200, nullable = false)
+    private String razonSocialNombre;
 
-    @Column(length = 100, nullable = false)
-    private  String razonSocial;
+    @Column(length = 15)
+    private String telefono;
 
-    @Column(length =15)
-    private String tpoContribuyente;
+    @Column(length = 100)
+    private String email;
 
     @Column(length = 150)
-    private String nombreComercial;
+    private String direccion;
 
     @Column(length = 10)
     private String estado;
 
-    @Column(length = 150)
-    private  String direccion;
+    public Cliente() {
+    }
+    /*creado por ed*/
 
-    @Column(length=15)
-    private String telefono;
+    public Cliente(String numeroDniRuc, String razonSocialNombre) {
+        this.numeroDniRuc = numeroDniRuc;
+        this.razonSocialNombre = razonSocialNombre;
+    }
 
-    @Column(length = 15)
-    private String fax;
-
-    @Column(length = 100)
-    private  String email;
-
+    public Cliente(ClienteBuilder builder) {
+        this.numeroDniRuc = builder.numeroRucDni;
+        this.razonSocialNombre = builder.razonSocialNombre;
+        this.direccion = builder.direccion;
+        this.email = builder.email;
+        this.telefono = builder.telefono;
+        this.estado = builder.estado;
+    }
 
     @Override
     public Long getId() {
@@ -55,52 +57,20 @@ public class Cliente implements EntityGeneric {
         this.id = id;
     }
 
-
-
-    @Override
-    public String toString()
-    {
-        return String.format("cliente[%d, %s]", this.id, this.getNumeroRuc(), this.getNumeroDNI(), this.getRazonSocial(), this.getNombreComercial(), this.getTelefono(), this.getEmail(), this.getDireccion(), this.getFax(), this.getTpoContribuyente(), this.getEstado());
+    public String getNumeroDniRuc() {
+        return numeroDniRuc;
     }
 
-    public String getNumeroRuc() {
-        return numeroRuc;
+    public void setNumeroDniRuc(String numeroDniRuc) {
+        this.numeroDniRuc = numeroDniRuc;
     }
 
-    public void setNumeroRuc(String numeroRuc) {
-        this.numeroRuc = numeroRuc;
+    public String getRazonSocialNombre() {
+        return razonSocialNombre;
     }
 
-    public String getNumeroDNI() {
-        return numeroDNI;
-    }
-
-    public void setNumeroDNI(String numeroDNI) {
-        this.numeroDNI = numeroDNI;
-    }
-
-    public String getRazonSocial() {
-        return razonSocial;
-    }
-
-    public void setRazonSocial(String razonSocial) {
-        this.razonSocial = razonSocial;
-    }
-
-    public String getTpoContribuyente() {
-        return tpoContribuyente;
-    }
-
-    public void setTpoContribuyente(String tpoContribuyente) {
-        this.tpoContribuyente = tpoContribuyente;
-    }
-
-    public String getNombreComercial() {
-        return nombreComercial;
-    }
-
-    public void setNombreComercial(String nombreComercial) {
-        this.nombreComercial = nombreComercial;
+    public void setRazonSocialNombre(String razonSocialNombre) {
+        this.razonSocialNombre = razonSocialNombre;
     }
 
     public String getEstado() {
@@ -127,14 +97,6 @@ public class Cliente implements EntityGeneric {
         this.telefono = telefono;
     }
 
-    public String getFax() {
-        return fax;
-    }
-
-    public void setFax(String fax) {
-        this.fax = fax;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -142,4 +104,70 @@ public class Cliente implements EntityGeneric {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", numeroDniRuc='" + numeroDniRuc + '\'' +
+                ", razonSocialNombre='" + razonSocialNombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", email='" + email + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", estado='" + estado + '\'' +
+                '}';
+    }
+
+    public static class ClienteBuilder {
+
+        private String numeroRucDni;
+
+        private String razonSocialNombre;
+
+        private String estado;
+
+        private String direccion;
+
+        private String telefono;
+
+        private String email;
+
+        public ClienteBuilder() {
+        }
+
+        public ClienteBuilder numeroRucDni(String numeroRucDni) {
+            this.numeroRucDni = numeroRucDni;
+            return this;
+        }
+
+        public ClienteBuilder razonSocialNombre(String razonSocialNombre) {
+            this.razonSocialNombre = razonSocialNombre;
+            return this;
+        }
+
+        public ClienteBuilder estado(String estado) {
+            this.estado = estado;
+            return this;
+        }
+
+        public ClienteBuilder direccion(String direccion) {
+            this.direccion = direccion;
+            return this;
+        }
+
+        public ClienteBuilder telefono(String telefono) {
+            this.telefono = telefono;
+            return this;
+        }
+
+        public ClienteBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Cliente build() {
+            return new Cliente(this);
+        }
+    }
+
 }
