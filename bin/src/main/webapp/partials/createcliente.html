@@ -1,0 +1,48 @@
+<div class="alert alert-success">
+    <h3>Crear Cliente</h3>
+</div>
+
+<form class="row">
+    <div class="form-group">
+        <div class="col-xs-12">
+        <label class="control-label" for="numeroDniRuc">DNI/RUC</label>
+            <input ng-model="cliente.numeroDniRuc" id="numeroDniRuc" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-xs-12">
+            <label class="control-label" for="razonSocialNombre">Nombre / Razon Social</label>
+            <input ng-model="cliente.razonSocialNombre" id="razonSocialNombre" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <label class="control-label" for="Telefono">Telefono</label>
+            <input ng-model="cliente.telefono" id="telefono" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <label class="control-label" for="Email">Email</label>
+            <input ng-model="cliente.email" id="email" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <label class="control-label" for="Direccion">Direccion</label>
+            <input ng-model="cliente.direccion" id="direccion" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            <label class="control-label" for="Estado">Estado</label>
+            <input ng-model="cliente.estado" id="estado" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary" ng-click="save()"><span class="fa fa-check"></span> Guardar</button>
+        </div>
+    </div>
+</form>
