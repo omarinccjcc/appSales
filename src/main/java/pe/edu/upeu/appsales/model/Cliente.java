@@ -49,10 +49,10 @@ public class Cliente implements BaseEntity {
     public Cliente(ClienteBuilder builder) {
         this.numeroDniRuc = builder.numeroRucDni;
         this.razonSocialNombre = builder.razonSocialNombre;
-        this.estado = builder.estado;
         this.direccion = builder.direccion;
-        this.telefono = builder.telefono;
         this.email = builder.email;
+        this.telefono = builder.telefono;
+        this.estado = builder.estado;
     }
 
     @Override
